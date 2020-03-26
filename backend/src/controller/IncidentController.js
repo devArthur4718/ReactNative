@@ -37,7 +37,7 @@ module.exports = {
 
         await connection('sinistros').where('id', id).delete(); 
 
-        return response.status(204).send(); 
+        return response.status(204).send();
 
     }
 };

@@ -7,5 +7,5 @@ app.use(express.json());
   
 app.use(routes);
 
-app.listen(2222);
+app.listen(2000);
 
