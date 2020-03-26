@@ -7,7 +7,7 @@ routes.post('/ongs',  async (request, response) => {
     const {name, email, whatsapp, city, uf} = request.body; 
     const id = crypto.randomBytes(4).toString('HEX');
 
-    await connection('tabOngs').insert({
+    await connection('ongs').insert({
         id,
         name,
         email,
@@ -15,8 +15,6 @@ routes.post('/ongs',  async (request, response) => {
         city,
         uf,
     })
-
-
     return response.json({id});
 
 });   
