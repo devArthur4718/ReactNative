@@ -3,13 +3,24 @@ const connection = require('../database/connection');
 module.exports = {
 
     async index(request, response){
+        //Indexing by page
         const { page = 1} = request.query; 
+        //A total of incidents
+        const [count] = await connection('sinistros').count();
 
+        console.log(count); 
         const incidents = await connection('sinistros')
+            .join('ongs', 'ongs.id', '=', 'sinistros.ongs_id')
             .limit(5)
             .offset((page - 1) * 5)
-            .select('*');
+            .select(['sinistros.*'
+                    ,'ongs.name',
+                    'ongs.email',
+                    'ongs.whatsapp',
+                    'ongs.city',
+                    'ongs.uf']);
 
+        response.header('X-Total-Count', count['count(*)'])
 
         return response.json(incidents);
 
