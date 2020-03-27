@@ -1,11 +1,18 @@
-import React from 'react'; 
+import React, { useState} from 'react'; 
 import { Link } from 'react-router-dom'
 import {FiArrowLeft} from 'react-icons/fi'
+import api from '../../services/api'
 import './styles.css'
 
 import logoImg from '../../assets/logo.svg';  
 
 export default function Register(){
+    const[name, setName] = useState('');
+
+    function handleRegister(e) { 
+        e.preventDefault();
+    }
+
     return (
         <div className="register-container">
             <div className="content">
@@ -20,7 +27,7 @@ export default function Register(){
                     </Link>
                 </section>
 
-                <form>
+                <form onSubmit={handleRegister}>
                     <input placeholder="Nome da Ong"/>
                     <input type="email" placeholder="E-mail"/>
                     <input placeholder="Whatsapp"/>
