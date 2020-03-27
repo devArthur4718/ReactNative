@@ -1,24 +1,12 @@
-import React, { useState} from 'react';
+import React from 'react';
 
-import Header from './Header';
+import './global.css'
+import Logon from './pages/Logon';
 
 function App() {
-  let [counter, setCounter] = useState(0);
-
-  //Retorna um array com duas posicoes com [valor, funcDeAtualizacao]
-
-  function increment(){
-    setCounter(counter + 1); 
-   
-  }
-
-
-  return (
-    <div>
-         <Header > Semana Omnistack {counter} </Header>
-         <button onClick={increment}>Incrementar</button>
-    </div>
  
+  return (
+    <Logon />
   );
 }
  
