@@ -6,7 +6,9 @@ import * as MailComposer from 'expo-mail-composer'
 
 import styles from './styles'; 
 import logoImg from '../../assets/logo.png'
-
+//second page
+//When loading if an error is presented due to the router files not finding this page 
+//try renaming it to index.js and reload project
 export default function Detail() { 
     const navigation = useNavigation(); 
     const route = useRoute(); 

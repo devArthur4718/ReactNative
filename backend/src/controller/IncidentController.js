@@ -1,5 +1,9 @@
 const connection = require('../database/connection'); 
 
+
+class IncidentController{
+    
+}
 module.exports = {
 
     async index(request, response){
@@ -54,7 +58,7 @@ module.exports = {
 
         await connection('sinistros').where('id', id).delete(); 
 
-        return response.status(204).send();
+        return response.status(202).json({message : 'Incident deleted sucessfully!'});
 
     }
 };
