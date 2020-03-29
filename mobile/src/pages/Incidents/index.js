@@ -77,7 +77,7 @@ export default function Incidents() {
                        style : 'currency', 
                        currency : 'BRL' 
                     }).format(incident.value)}</Text>
-
+ 
                     <TouchableOpacity 
                         style={styles.detailsButton}
                         onPress={() => navigateToDetail(incident)}
