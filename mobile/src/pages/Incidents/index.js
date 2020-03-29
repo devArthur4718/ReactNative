@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'; 
 import { View,FlatList, Image, Text, TouchableOpacity} from 'react-native'; 
 import {Feather} from '@expo/vector-icons'; 
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import logoImg from '../../assets/logo.png'
 import styles from './styles'
 
@@ -9,7 +9,9 @@ import api from '../../services/api'
 
 export default function Incidents() { 
     const [incidents,setIncidents] = useState([]);
-    const[total, setTotal] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     const navigation = useNavigation(); 
 
     function navigateToDetail(incident){
@@ -17,16 +19,27 @@ export default function Incidents() {
     }
 
     async function loadIncidents(){
-        const response = await api.get('incidents');
-
-        try{
-            setIncidents(response.data);
-            setTotal(response.headers['x-total-count']);
-        }catch(err){
+        if(loading){
+            return;
+        }
+        if(total > 0 && incidents.length == total){
 
         }
+        const response = await api.get('incidents', { 
+            params: { page}
+        });
+        setLoading(true);
 
-       
+        try{
+            setIncidents([ ...incidents, ...response.data]);
+            setTotal(response.headers['x-total-count']);
+            //Add incidents to the previous list
+
+            setPage(page + 1); 
+            setLoading(false);
+        }catch(err){    
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -48,7 +61,9 @@ export default function Incidents() {
             data={incidents}
             style={styles.incidentList}
             keyExtractor={incident => String(incident.id)}
-            showsVerticalScrollIndicator={false} 
+            showsVerticalScrollIndicator={true} 
+            onEndReached={loadIncidents}
+            onEndReachedThreshold={0.2}
             renderItem={({ item: incident }) => (
                 <View style={styles.incident}>
                     <Text style={styles.incidentProperty}>Ong: </Text>
