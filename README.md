@@ -13,7 +13,7 @@ a versão mais recente do node.
 
 * Versão do node v13.11.0
 
-Client para requests HTTP.
+* Client para requests HTTP.
 <a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener noreferrer">Axios</a>
 
 Middleware para validação de requests. 
