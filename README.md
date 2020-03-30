@@ -32,8 +32,8 @@ Expo para teste e deploy no Android e no iOS.
 
 Faça clone ou baixe o projeto e rode os seguintes comandoss: 
 
-npm install - Para  buscar todos os módulos do projeto. 
-npx knex migrate:latest - Dentro da basta backend para criar as tabelas e a base de daos SQL. 
-npm start - Na pasta frontend, para iniciar a web page. 
+* npm install - Para  buscar todos os módulos do projeto. 
+* npx knex migrate:latest - Dentro da basta backend para criar as tabelas e a base de daos SQL. 
+* npm start - Na pasta frontend, para iniciar a web page. 
 
 
